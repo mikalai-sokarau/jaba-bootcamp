@@ -1,4 +1,4 @@
-package com.jmp.msokarau;
+package com.jmp.msokarau.bank;
 
 import com.jmp.msokarau.classes.User;
 import com.jmp.msokarau.classes.BankCard;
