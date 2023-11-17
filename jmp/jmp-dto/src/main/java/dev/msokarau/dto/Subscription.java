@@ -1,4 +1,4 @@
-package com.jmp.msokarau.classes;
+package dev.msokarau.dto;
 
 import java.time.LocalDate;
 

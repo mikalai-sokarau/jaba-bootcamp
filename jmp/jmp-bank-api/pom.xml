@@ -3,11 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>jmp</artifactId>
-    <groupId>com.jmp.msokarau</groupId>
+    <groupId>dev.msokarau</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.jmp.msokarau</groupId>
   <artifactId>jmp-bank-api</artifactId>
   <version>1.0-SNAPSHOT</version>
 
@@ -21,15 +20,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.jmp.msokarau</groupId>
+      <groupId>dev.msokarau</groupId>
       <artifactId>jmp-dto</artifactId>
       <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -52,7 +45,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
