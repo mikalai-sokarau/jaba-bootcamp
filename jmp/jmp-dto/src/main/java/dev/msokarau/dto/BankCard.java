@@ -1,6 +1,6 @@
 package dev.msokarau.dto;
 
 public class BankCard {
-  String number;
-  User user;
+  public String number;
+  public User user;
 }

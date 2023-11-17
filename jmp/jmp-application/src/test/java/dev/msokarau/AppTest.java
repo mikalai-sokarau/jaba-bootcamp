@@ -1,4 +1,4 @@
-package com.jmp.msokarau;
+package dev.msokarau;
 
 import static org.junit.Assert.assertTrue;
 
