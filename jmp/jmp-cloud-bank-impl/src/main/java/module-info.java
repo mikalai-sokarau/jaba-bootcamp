@@ -1,3 +1,3 @@
-module com.jmp.msokarau.jmp.cloud.bank.impl {
-  requires com.jmp.msokarau.jmp.bank.api;
+module dev.msokarau.cloud.bank.impl {
+  requires dev.msokarau.bank.api;
 }

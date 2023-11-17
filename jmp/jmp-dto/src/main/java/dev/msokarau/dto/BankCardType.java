@@ -1,4 +1,4 @@
-package com.jmp.msokarau.constants;
+package dev.msokarau.dto;
 
 public enum BankCardType {
   CREDIT,

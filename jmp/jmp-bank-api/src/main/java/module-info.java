@@ -1,5 +1,5 @@
-module com.jmp.msokarau.jmp.bank.api {
-  exports com.jmp.msokarau.bank;
+module dev.msokarau.bank.api {
+  exports dev.msokarau.bank.api;
 
-  requires transitive com.jmp.msokarau.jmp.dto;
+  requires transitive dev.msokarau.dto;
 }

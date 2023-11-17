@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.jmp.msokarau</groupId>
+  <groupId>dev.msokarau</groupId>
   <artifactId>jmp</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -22,7 +22,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -49,7 +49,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
@@ -78,9 +78,9 @@
   <modules>
     <module>jmp-dto</module>
     <module>jmp-bank-api</module>
-    <module>jmp-cloud-bank-impl</module>
-    <module>jmp-cloud-service-impl</module>
     <module>jmp-service-api</module>
+    <module>jmp-cloud-service-impl</module>
+    <module>jmp-cloud-bank-impl</module>
   </modules>
 
 </project>
