@@ -1,3 +1,3 @@
-module dev.msokarau.dto {
+module dto {
   exports dev.msokarau.dto;
 }
