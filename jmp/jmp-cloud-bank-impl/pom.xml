@@ -4,27 +4,25 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <name>jmp-cloud-bank-impl</name>
   <artifactId>jmp-cloud-bank-impl</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <parent>
-    <artifactId>jmp</artifactId>
     <groupId>dev.msokarau</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>jmp</artifactId>
+    <version>0.0.1</version>
   </parent>
 
   <dependencies>
     <dependency>
       <groupId>dev.msokarau</groupId>
       <artifactId>jmp-dto</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>dev.msokarau</groupId>
       <artifactId>jmp-bank-api</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>
   </dependencies>
 </project>
