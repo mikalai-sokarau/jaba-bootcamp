@@ -4,60 +4,66 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <name>jmp-application</name>
-  <artifactId>jmp</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>jmp-application</artifactId>
   <packaging>jar</packaging>
 
   <parent>
-    <artifactId>jmp</artifactId>
     <groupId>dev.msokarau</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>jmp</artifactId>
+    <version>0.0.1</version>
   </parent>
 
   <dependencies>
     <dependency>
       <groupId>dev.msokarau</groupId>
       <artifactId>jmp-bank-api</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>dev.msokarau</groupId>
       <artifactId>jmp-dto</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>dev.msokarau</groupId>
       <artifactId>jmp-cloud-bank-impl</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>dev.msokarau</groupId>
       <artifactId>jmp-cloud-service-impl</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>dev.msokarau</groupId>
       <artifactId>jmp-service-api</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.parent.version}</version>
     </dependency>
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.3.0</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <mainClass>dev.msokarau.application.Application</mainClass>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <transformers>
+            <transformer
+              implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+              <mainClass>dev.msokarau.application.Application</mainClass>
+            </transformer>
+          </transformers>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>
