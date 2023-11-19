@@ -11,10 +11,10 @@ public class BankImpl implements Bank {
 
   public BankCard createBankCard(User user, BankCardType type) {
     if (type == BankCardType.CREDIT) {
-      return new CreditBankCard();
+      return new CreditBankCard(user);
     }
     if (type == BankCardType.DEBIT) {
-      return new DebitBankCard();
+      return new DebitBankCard(user);
     }
     return null;
   }
