@@ -19,7 +19,7 @@ public class ServiceImpl implements Service {
 
   public Optional<Subscription> getSubscriptionByBankCardNumber(String cardNumber) {
     return subscriptions.stream()
-        .filter(subscription -> subscription.bankcard.equals(cardNumber))
+        .filter(subscription -> subscription != null && subscription.bankcard.equals(cardNumber))
         .findFirst();
   }
 
