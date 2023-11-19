@@ -10,4 +10,8 @@ public class Subscription {
     this.bankcard = bankcard;
     this.startDate = LocalDate.now();
   }
+
+  public String toString() {
+    return bankcard;
+  }
 }

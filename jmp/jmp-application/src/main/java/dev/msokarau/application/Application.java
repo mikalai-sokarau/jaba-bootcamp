@@ -5,33 +5,64 @@ import dev.msokarau.cloud.bank.impl.BankImpl;
 import dev.msokarau.cloud.service.impl.ServiceImpl;
 import dev.msokarau.dto.BankCard;
 import dev.msokarau.dto.BankCardType;
-import dev.msokarau.dto.Subscription;
 import dev.msokarau.dto.User;
 import dev.msokarau.service.api.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Random;
 
 public class Application {
     public static void main(String[] args) {
         Bank bank = new BankImpl();
         Service service = new ServiceImpl();
 
-        BankCard creditCard = bank.createBankCard(new User("User1"), BankCardType.CREDIT);
-        BankCard debitCard = bank.createBankCard(new User("User2"), BankCardType.DEBIT);
+        List<BankCard> cards = subscribeUsers(generateUsers(), bank, service);
 
-        service.subscribe(creditCard);
-        service.subscribe(debitCard);
+        printSubscriptions(cards, service);
+        printUsers(service.getAllUsers());
+        printAverageAge(service);
+    }
 
-        Optional<Subscription> subscription1 = service.getSubscriptionByBankCardNumber(creditCard.number);
-        Optional<Subscription> subscription2 = service.getSubscriptionByBankCardNumber(debitCard.number);
-        Optional<Subscription> subscription3 = service.getSubscriptionByBankCardNumber("1234567890");
+    private static List<User> generateUsers() {
+        List<User> users = new ArrayList<>(10);
 
-        System.out.println("Subscription1: " + subscription1);
-        System.out.println("Subscription2: " + subscription2);
-        System.out.println("Subscription3: " + subscription3);
+        for (int i = 0; i < 10; i++) {
+            User user = new User("User" + i);
+            users.add(user);
+        }
 
-        List<User> users = service.getAllUsers();
-        System.out.println("Users: " + users);
+        return users;
+    }
+
+    private static List<BankCard> subscribeUsers(List<User> users, Bank bank, Service service) {
+        Random random = new Random();
+        List<BankCard> cards = new ArrayList<>(users.size());
+
+        for (User user : users) {
+            BankCardType cardType = random.nextBoolean() ? BankCardType.CREDIT : BankCardType.DEBIT;
+            BankCard card = bank.createBankCard(user, cardType);
+
+            cards.add(card);
+            service.subscribe(card);
+        }
+
+        return cards;
+    }
+
+    private static void printSubscriptions(List<BankCard> cards, Service service) {
+        System.out.println("\nSubscriptions: ");
+
+        cards.forEach((card) -> System.out.println(service.getSubscriptionByBankCardNumber(card.number)));
+    }
+
+    private static void printUsers(List<User> users) {
+        System.out.println("\nUsers: ");
+
+        users.forEach((user) -> System.out.println(user + " is payable: " + Service.isPayableUser(user)));
+    }
+
+    private static void printAverageAge(Service service) {
+        System.out.println("\nAverage age: " + service.getAverageUsersAge());
     }
 }
