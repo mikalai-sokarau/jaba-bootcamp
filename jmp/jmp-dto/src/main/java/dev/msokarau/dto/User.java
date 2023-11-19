@@ -20,6 +20,6 @@ public class User {
   }
 
   public String toString() {
-    return name + " " + birthday;
+    return "Name: " + name + ", " + "born in: " + birthday.getYear();
   }
 }
