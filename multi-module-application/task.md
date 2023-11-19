@@ -1,9 +1,8 @@
-##Used Tools
-Java Development Kit 11+
-Apache Maven 3.6.0+
-Git 2.24+
+## Used Tools
+Java 17.0.5\
+Apache Maven 3.9.5\
 
-##Task
+## Task
 1. Create maven project with 5 modules (see Java 9 modules):
 - jmp-bank-api
 - jmp-service-api
