@@ -7,14 +7,15 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class CacheService {
-  private static final int MAX_ITEMS = 100; // can be set to 100000, but console output is too huge ^^
+  private static final int MAX_ITEMS = 100000;
   private static final long EVICTION_TIME_THRESHOLD = 5000; // 5 seconds
 
   private final Map<String, CacheEntry> cache = new ConcurrentHashMap<>();
   private final ScheduledExecutorService evictionScheduler = Executors.newScheduledThreadPool(4);
 
   private long totalPutTime = 0;
-  private long totalEvictions = 0;
+  private int totalEvictions = 0;
+  private int totalPutItems = 0;
 
   public CacheService() {
     // Schedule periodic eviction task
@@ -28,15 +29,16 @@ public class CacheService {
     if (cache.size() >= MAX_ITEMS) {
       evictStaleEntries();
     }
-    // Still too many items, evict the first one
     if (cache.size() >= MAX_ITEMS) {
+      // Still too many items, evict the first one
       String firstKey = cache.keySet().iterator().next();
       cache.remove(firstKey);
       totalEvictions++;
-      logEviction(firstKey);
+      // logEviction(firstKey); // Disabled to reduce console output
     }
 
     cache.put(key, new CacheEntry(value));
+    totalPutItems++;
 
     long endTime = System.nanoTime();
     totalPutTime += (endTime - startTime);
@@ -48,7 +50,7 @@ public class CacheService {
   }
 
   public long getAveragePutTime() {
-    return (cache.size() > 0) ? totalPutTime / cache.size() : 0;
+    return totalPutTime / totalPutItems;
   }
 
   public long getEvictionCount() {
@@ -69,6 +71,7 @@ public class CacheService {
 
   private void evictStaleEntries() {
     long currentTime = System.currentTimeMillis();
+    int evictedThisRun = 0;
 
     for (Map.Entry<String, CacheEntry> entry : cache.entrySet()) {
       String key = entry.getKey();
@@ -78,8 +81,13 @@ public class CacheService {
         // Entry is stale, evict it
         cache.remove(key);
         totalEvictions++;
-        logEviction(key);
+        evictedThisRun++;
+        // logEviction(key); // Disabled to reduce console output
       }
+    }
+
+    if (evictedThisRun > 0) {
+      System.out.println("Evicted " + evictedThisRun + " entries");
     }
   }
 
