@@ -12,13 +12,15 @@ package dev.msokarau.application;
 // Number of cache evictions
 // Support concurrency
 
-import dev.msokarau.services.Cache.CacheService;
-import dev.msokarau.services.Scanner.ScannerService;
+import dev.msokarau.interfaces.CacheService.CacheService;
+import dev.msokarau.interfaces.ScannerService.ScannerService;
+import dev.msokarau.CacheServiceImpl.CacheServiceImpl;
+import dev.msokarau.classes.ScannerServiceImpl.ScannerServiceImpl;
 
 public class Application {
     public static void main(String[] args) {
-        CacheService cacheService = new CacheService();
-        ScannerService scannerService = new ScannerService(cacheService);
+        CacheService cacheService = new CacheServiceImpl();
+        ScannerService scannerService = new ScannerServiceImpl(cacheService);
 
         scannerService.run();
     }

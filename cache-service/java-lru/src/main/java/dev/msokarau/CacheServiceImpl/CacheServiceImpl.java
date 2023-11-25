@@ -1,4 +1,4 @@
-package dev.msokarau.services.Cache;
+package dev.msokarau.CacheServiceImpl;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -6,21 +6,26 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class CacheService {
+import dev.msokarau.interfaces.CacheService.CacheService;
+import dev.msokarau.interfaces.Config.Config;
+import dev.msokarau.classes.ConfigImpl.ConfigImpl;
+import dev.msokarau.classes.CacheEntryImpl.CacheEntryImpl;
+
+public class CacheServiceImpl implements CacheService {
   private Config config;
 
-  private final Map<String, CacheEntry> cache = new ConcurrentHashMap<>();
+  private final Map<String, CacheEntryImpl> cache = new ConcurrentHashMap<>();
   private final ScheduledExecutorService evictionScheduler = Executors.newScheduledThreadPool(4);
 
   private long totalPutTime = 0;
   private int totalEvictions = 0;
   private int totalPutItems = 0;
 
-  public CacheService() {
-    this(new Config());
+  public CacheServiceImpl() {
+    this(new ConfigImpl());
   }
 
-  public CacheService(Config config) {
+  public CacheServiceImpl(Config config) {
     this.config = config;
     // Schedule periodic eviction task
     evictionScheduler.scheduleAtFixedRate(this::evictStaleEntries, 1, config.getEvictionPeriod(),
@@ -42,7 +47,7 @@ public class CacheService {
       logEviction(firstKey);
     }
 
-    cache.put(key, new CacheEntry(value));
+    cache.put(key, new CacheEntryImpl(value));
     totalPutItems++;
 
     long endTime = System.nanoTime();
@@ -50,7 +55,7 @@ public class CacheService {
   }
 
   public String get(String key) {
-    CacheEntry entry = cache.get(key);
+    CacheEntryImpl entry = cache.get(key);
 
     if (entry == null) {
       return null;
@@ -79,16 +84,16 @@ public class CacheService {
     long currentTime = System.currentTimeMillis();
     int evictedThisRun = 0;
 
-    for (Map.Entry<String, CacheEntry> entry : cache.entrySet()) {
+    for (Map.Entry<String, CacheEntryImpl> entry : cache.entrySet()) {
       String key = entry.getKey();
-      CacheEntry cacheEntry = entry.getValue();
+      CacheEntryImpl cacheEntry = entry.getValue();
 
       if (currentTime - cacheEntry.getLastAccessTime() > config.getEvictionTime()) {
         // Entry is stale, evict it
         cache.remove(key);
         totalEvictions++;
         evictedThisRun++;
-        logEviction(key); // Disabled to reduce console output
+        logEviction(key);
       }
     }
 

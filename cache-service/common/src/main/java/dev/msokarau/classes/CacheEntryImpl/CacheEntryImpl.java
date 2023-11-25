@@ -1,10 +1,12 @@
-package dev.msokarau.services.Cache;
+package dev.msokarau.classes.CacheEntryImpl;
 
-class CacheEntry {
+import dev.msokarau.interfaces.CacheEntry.CacheEntry;
+
+public class CacheEntryImpl implements CacheEntry {
   private String value;
   private long lastAccessTime;
 
-  public CacheEntry(String value) {
+  public CacheEntryImpl(String value) {
     this.value = value;
     this.lastAccessTime = System.currentTimeMillis();
   }

@@ -109,6 +109,8 @@
   </build>
 
   <modules>
+    <module>cache-service-api</module>
+    <module>common</module>
     <module>guava-lfu</module>
     <module>java-lru</module>
   </modules>

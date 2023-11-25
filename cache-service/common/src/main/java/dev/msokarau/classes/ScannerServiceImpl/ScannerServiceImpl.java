@@ -1,13 +1,14 @@
-package dev.msokarau.services.Scanner;
+package dev.msokarau.classes.ScannerServiceImpl;
 
 import java.util.Scanner;
-import dev.msokarau.services.Cache.CacheService;
+import dev.msokarau.interfaces.ScannerService.ScannerService;
+import dev.msokarau.interfaces.CacheService.CacheService;
 
-public class ScannerService {
+public class ScannerServiceImpl implements ScannerService {
   CacheService cacheService;
   Scanner scanner = new Scanner(System.in);
 
-  public ScannerService(CacheService cacheService) {
+  public ScannerServiceImpl(CacheService cacheService) {
     this.cacheService = cacheService;
   }
 
@@ -62,14 +63,18 @@ public class ScannerService {
   }
 
   private void help() {
+    String ANSI_BLUE = "\u001B[34m";
+    String ANSI_YELLOW = "\u001B[33m";
+    String ANSI_RESET = "\u001B[0m";
+
     System.out.println("""
         > Available commands:
 
-        \u001B[34mput\u001B[0m \u001B[33m<number>\u001B[0m (put <number> entries into cache)
-        \u001B[34mget\u001B[0m \u001B[33m<key>\u001B[0m (get value for <key>)
-        \u001B[34mstats\u001B[0m (print cache statistics)
-        \u001B[34mexit\u001B[0m (exit the application)
-        """);
+        %1$sput%3$s %2$s<number>%3$s (put <number> entries into cache)
+        %1$sget%3$s %2$s<key>%3$s (get value for <key>)
+        %1$sstats%3$s (print cache statistics)
+        %1$sexit%3$s (exit the application)
+        """.formatted(ANSI_BLUE, ANSI_YELLOW, ANSI_RESET));
   }
 
   private void exit() {

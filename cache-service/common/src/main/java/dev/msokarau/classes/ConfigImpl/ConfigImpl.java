@@ -1,6 +1,8 @@
-package dev.msokarau.services.Cache;
+package dev.msokarau.classes.ConfigImpl;
 
-public class Config {
+import dev.msokarau.interfaces.Config.Config;
+
+public class ConfigImpl implements Config {
   private static final int DEFAULT_MAX_ITEMS = 100000;
   private static final int EVICTION_TIME_THRESHOLD = 5000; // 5 seconds
   private static final int EVICTION_PERIOD = 1000; // 1 second
@@ -8,19 +10,25 @@ public class Config {
   private int evictionTime;
   private int evictionPeriod;
 
-  public Config() {
+  public ConfigImpl() {
     this(DEFAULT_MAX_ITEMS, EVICTION_TIME_THRESHOLD, EVICTION_PERIOD);
   }
 
-  public Config(int maxItems) {
+  public ConfigImpl(int maxItems) {
     this(maxItems, EVICTION_TIME_THRESHOLD, EVICTION_PERIOD);
   }
 
-  public Config(int maxItems, int evictionTime) {
+  public ConfigImpl(int maxItems, int evictionTime) {
     this(maxItems, evictionTime, EVICTION_PERIOD);
   }
 
-  public Config(int maxItems, int evictionTime, int evictionPeriod) {
+  public ConfigImpl(int maxItems, int evictionTime, int evictionPeriod) {
+    this.maxItems = maxItems;
+    this.evictionTime = evictionTime;
+    this.evictionPeriod = evictionPeriod;
+  }
+
+  public void Config(int maxItems, int evictionTime, int evictionPeriod) {
     this.maxItems = maxItems;
     this.evictionTime = evictionTime;
     this.evictionPeriod = evictionPeriod;
