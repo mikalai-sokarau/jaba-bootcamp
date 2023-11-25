@@ -26,7 +26,8 @@ public class ScannerService {
       case "get" -> get(parts);
       case "help" -> help();
       case "stats" -> stats();
-      default -> System.out.println("> Unknown command, type 'help' to see available commands\n");
+      default ->
+        System.out.println("> Unknown command: \"" + parts[0] + "\", type 'help' to see available commands\n");
     }
   }
 
