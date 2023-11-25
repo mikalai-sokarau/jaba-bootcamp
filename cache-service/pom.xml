@@ -37,7 +37,14 @@
         </plugin> -->
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.2.0</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>dev.msokarau.application.Application</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
         </plugin>
         <!-- to check plugins below -->
         <plugin>
