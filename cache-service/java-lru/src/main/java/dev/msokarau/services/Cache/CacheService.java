@@ -50,6 +50,10 @@ public class CacheService {
   }
 
   public long getAveragePutTime() {
+    if (totalPutItems == 0) {
+      return 0;
+    }
+
     return totalPutTime / totalPutItems;
   }
 
@@ -87,7 +91,7 @@ public class CacheService {
     }
 
     if (evictedThisRun > 0) {
-      System.out.println("Evicted " + evictedThisRun + " entries");
+      System.out.println("> Evicted " + evictedThisRun + " entries");
     }
   }
 
