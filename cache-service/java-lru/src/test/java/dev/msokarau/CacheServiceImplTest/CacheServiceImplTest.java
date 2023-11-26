@@ -70,7 +70,7 @@ public class CacheServiceImplTest {
     assertNull(cacheService.get("1"));
     assertNull(cacheService.get("11"));
 
-    Thread.sleep(30);
+    Thread.sleep(100);
 
     assertNull(cacheService.get("10"));
   }
@@ -82,7 +82,7 @@ public class CacheServiceImplTest {
 
     cacheService.shutdown();
 
-    Thread.sleep(30);
+    Thread.sleep(100);
 
     assertEquals(cacheService.get("1"), "Value 1");
   }

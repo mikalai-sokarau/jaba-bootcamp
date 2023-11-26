@@ -8,13 +8,14 @@ import java.util.concurrent.TimeUnit;
 
 import dev.msokarau.interfaces.CacheService.CacheService;
 import dev.msokarau.interfaces.Config.Config;
+import dev.msokarau.interfaces.CacheEntry.CacheEntry;
 import dev.msokarau.CacheEntryImpl.CacheEntryImpl;
 import dev.msokarau.ConfigImpl.ConfigImpl;
 
 public class CacheServiceImpl implements CacheService {
   private Config config;
 
-  private final Map<String, CacheEntryImpl> cache = new ConcurrentHashMap<>();
+  private final Map<String, CacheEntry> cache = new ConcurrentHashMap<>();
   private final ScheduledExecutorService evictionScheduler = Executors.newScheduledThreadPool(4);
 
   private long totalPutTime = 0;
@@ -55,7 +56,7 @@ public class CacheServiceImpl implements CacheService {
   }
 
   public String get(String key) {
-    CacheEntryImpl entry = cache.get(key);
+    CacheEntry entry = cache.get(key);
 
     if (entry == null) {
       return null;
@@ -84,9 +85,9 @@ public class CacheServiceImpl implements CacheService {
     long currentTime = System.currentTimeMillis();
     int evictedThisRun = 0;
 
-    for (Map.Entry<String, CacheEntryImpl> entry : cache.entrySet()) {
+    for (Map.Entry<String, CacheEntry> entry : cache.entrySet()) {
       String key = entry.getKey();
-      CacheEntryImpl cacheEntry = entry.getValue();
+      CacheEntry cacheEntry = entry.getValue();
 
       if (currentTime - cacheEntry.getLastAccessTime() > config.getEvictionTime()) {
         // Entry is stale, evict it
