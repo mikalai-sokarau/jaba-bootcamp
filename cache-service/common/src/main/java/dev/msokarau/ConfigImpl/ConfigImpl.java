@@ -1,4 +1,4 @@
-package dev.msokarau.classes.ConfigImpl;
+package dev.msokarau.ConfigImpl;
 
 import dev.msokarau.interfaces.Config.Config;
 
@@ -23,12 +23,6 @@ public class ConfigImpl implements Config {
   }
 
   public ConfigImpl(int maxItems, int evictionTime, int evictionPeriod) {
-    this.maxItems = maxItems;
-    this.evictionTime = evictionTime;
-    this.evictionPeriod = evictionPeriod;
-  }
-
-  public void Config(int maxItems, int evictionTime, int evictionPeriod) {
     this.maxItems = maxItems;
     this.evictionTime = evictionTime;
     this.evictionPeriod = evictionPeriod;

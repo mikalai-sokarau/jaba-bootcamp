@@ -1,14 +1,17 @@
-package dev.msokarau.services.Cache;
+package dev.msokarau.CacheServiceImplTest;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-public class CacheServiceTest {
+import dev.msokarau.CacheServiceImpl.CacheServiceImpl;
+import dev.msokarau.ConfigImpl.ConfigImpl;
+import dev.msokarau.interfaces.CacheService.CacheService;
+
+public class CacheServiceImplTest {
 
   @Test
   public void testPutAndGetValue() {
-    CacheService cacheService = new CacheService();
+    CacheService cacheService = new CacheServiceImpl();
     cacheService.put("key", "value");
 
     assertEquals(cacheService.get("key"), "value");
@@ -17,7 +20,7 @@ public class CacheServiceTest {
 
   @Test
   public void testEviction() {
-    CacheService cacheService = new CacheService(new Config(10, 10));
+    CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 10));
     putItemsInService(10, cacheService);
 
     assertEquals(cacheService.get("1"), "Value 1");
@@ -27,7 +30,7 @@ public class CacheServiceTest {
 
   @Test
   public void testEvictionCount() {
-    CacheService cacheService = new CacheService(new Config(10, 10));
+    CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 10));
     putItemsInService(15, cacheService);
 
     assertEquals(cacheService.getEvictionCount(), 5);
@@ -35,7 +38,7 @@ public class CacheServiceTest {
 
   @Test
   public void testAveragePutTime() {
-    CacheService cacheService = new CacheService(new Config(10, 10));
+    CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 10));
     putItemsInService(10, cacheService);
 
     assertNotEquals(cacheService.getAveragePutTime(), 0);
@@ -43,14 +46,14 @@ public class CacheServiceTest {
 
   @Test
   public void testAveragePutTimeWithNoItems() {
-    CacheService cacheService = new CacheService(new Config(10, 10));
+    CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 10));
 
     assertEquals(cacheService.getAveragePutTime(), 0);
   }
 
   @Test
   public void testEvictionAfterAccess() throws InterruptedException {
-    CacheService cacheService = new CacheService(new Config(10, 5, 15));
+    CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 5, 15));
     putItemsInService(10, cacheService);
 
     assertEquals(cacheService.get("1"), "Value 1");
@@ -74,7 +77,7 @@ public class CacheServiceTest {
 
   @Test
   public void testShutdown() throws InterruptedException {
-    CacheService cacheService = new CacheService(new Config(10, 10, 10));
+    CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 10, 10));
     putItemsInService(1, cacheService);
 
     cacheService.shutdown();

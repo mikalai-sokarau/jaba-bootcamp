@@ -1,7 +1,7 @@
 module common {
   requires transitive service.api;
 
-  exports dev.msokarau.classes.CacheEntryImpl;
-  exports dev.msokarau.classes.ConfigImpl;
-  exports dev.msokarau.classes.ScannerServiceImpl;
+  exports dev.msokarau.CacheEntryImpl;
+  exports dev.msokarau.ConfigImpl;
+  exports dev.msokarau.ScannerServiceImpl;
 }

@@ -1,12 +1,12 @@
-package dev.msokarau.services.Cache;
+package dev.msokarau.CacheEntryImplTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import dev.msokarau.classes.CacheEntryImpl.CacheEntryImpl;
+import dev.msokarau.CacheEntryImpl.CacheEntryImpl;
 
-public class CacheEntryTest {
+public class CacheEntryImplTest {
 
   @Test
   public void testGetValue() {

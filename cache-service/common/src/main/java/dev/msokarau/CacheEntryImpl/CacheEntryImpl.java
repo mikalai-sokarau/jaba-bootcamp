@@ -1,4 +1,4 @@
-package dev.msokarau.classes.CacheEntryImpl;
+package dev.msokarau.CacheEntryImpl;
 
 import dev.msokarau.interfaces.CacheEntry.CacheEntry;
 

@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import dev.msokarau.interfaces.CacheService.CacheService;
 import dev.msokarau.interfaces.Config.Config;
-import dev.msokarau.classes.ConfigImpl.ConfigImpl;
-import dev.msokarau.classes.CacheEntryImpl.CacheEntryImpl;
+import dev.msokarau.CacheEntryImpl.CacheEntryImpl;
+import dev.msokarau.ConfigImpl.ConfigImpl;
 
 public class CacheServiceImpl implements CacheService {
   private Config config;

@@ -1,4 +1,4 @@
-package dev.msokarau.classes.ScannerServiceImpl;
+package dev.msokarau.ScannerServiceImpl;
 
 import java.util.Scanner;
 import dev.msokarau.interfaces.ScannerService.ScannerService;
