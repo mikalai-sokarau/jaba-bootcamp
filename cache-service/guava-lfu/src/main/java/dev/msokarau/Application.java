@@ -1,10 +1,16 @@
 package dev.msokarau;
 
-/**
- * Hello world!
- *
- */
+import dev.msokarau.CacheServiceImpl.CacheServiceImpl;
+import dev.msokarau.ConfigImpl.ConfigImpl;
+import dev.msokarau.ScannerServiceImpl.ScannerServiceImpl;
+import dev.msokarau.interfaces.CacheService.CacheService;
+import dev.msokarau.interfaces.ScannerService.ScannerService;
+
 public class Application {
     public static void main(String[] args) {
+        CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 15000));
+        ScannerService scannerService = new ScannerServiceImpl(cacheService);
+
+        scannerService.run();
     }
 }
