@@ -1,4 +1,4 @@
-module java.lru {
+module java.lfu {
   requires transitive common;
   requires transitive service.api;
 

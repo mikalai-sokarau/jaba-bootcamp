@@ -64,7 +64,7 @@ public class CacheServiceImpl implements CacheService {
   }
 
   public void shutdown() {
-    cache.cleanUp();
+    cache.invalidateAll();
   }
 
   private void logEviction(String key) {
