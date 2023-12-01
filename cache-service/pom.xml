@@ -100,8 +100,8 @@
   <modules>
     <module>cache-service-api</module>
     <module>common</module>
-    <module>guava-lfu</module>
-    <module>java-lru</module>
+    <module>guava-lru</module>
+    <module>java-lfu</module>
   </modules>
 
 </project>
