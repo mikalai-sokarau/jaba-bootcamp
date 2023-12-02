@@ -41,11 +41,8 @@ public class CacheServiceImpl implements CacheService {
       evictStaleEntries();
     }
     if (cache.size() >= config.getMaxItems()) {
-      // Still too many items, evict the first one
-      String firstKey = cache.keySet().iterator().next();
-      cache.remove(firstKey);
-      totalEvictions++;
-      logEviction(firstKey);
+      // Still too many items, evict the node with the lowest frequency
+      removeFromCache(findNodeWithLowestFrequency());
     }
 
     cache.put(key, new CacheEntryImpl(value));
@@ -65,6 +62,43 @@ public class CacheServiceImpl implements CacheService {
     return entry.getValue();
   }
 
+  private String findNodeWithLowestFrequency() {
+    String nodeToRemove = null;
+    int lowestFrequency = Integer.MAX_VALUE;
+
+    for (Map.Entry<String, CacheEntry> entry : cache.entrySet()) {
+      String key = entry.getKey();
+      CacheEntry cacheEntry = entry.getValue();
+
+      if (cacheEntry.getFrequency() < lowestFrequency) {
+        lowestFrequency = cacheEntry.getFrequency();
+        nodeToRemove = key;
+      }
+    }
+
+    return nodeToRemove;
+  }
+
+  private void evictStaleEntries() {
+    long currentTime = System.currentTimeMillis();
+    int evictedThisRun = 0;
+
+    for (Map.Entry<String, CacheEntry> entry : cache.entrySet()) {
+      String key = entry.getKey();
+      CacheEntry cacheEntry = entry.getValue();
+
+      if (currentTime - cacheEntry.getLastAccessTime() > config.getEvictionTime()) {
+        // Entry is stale, evict it
+        evictedThisRun++;
+        removeFromCache(key);
+      }
+    }
+
+    if (evictedThisRun > 0) {
+      System.out.println("> Evicted " + evictedThisRun + " entries\n");
+    }
+  }
+
   public long getAveragePutTime() {
     if (totalPutItems == 0) {
       return 0;
@@ -81,29 +115,13 @@ public class CacheServiceImpl implements CacheService {
     evictionScheduler.shutdown();
   }
 
-  private void evictStaleEntries() {
-    long currentTime = System.currentTimeMillis();
-    int evictedThisRun = 0;
-
-    for (Map.Entry<String, CacheEntry> entry : cache.entrySet()) {
-      String key = entry.getKey();
-      CacheEntry cacheEntry = entry.getValue();
-
-      if (currentTime - cacheEntry.getLastAccessTime() > config.getEvictionTime()) {
-        // Entry is stale, evict it
-        cache.remove(key);
-        totalEvictions++;
-        evictedThisRun++;
-        logEviction(key);
-      }
-    }
-
-    if (evictedThisRun > 0) {
-      System.out.println("> Evicted " + evictedThisRun + " entries\n");
-    }
+  private void removeFromCache(String key) {
+    totalEvictions++;
+    cache.remove(key);
+    logEviction(key);
   }
 
   private void logEviction(String key) {
-    // System.out.println("- " + key); // Disabled to reduce console output
+    System.out.println("- " + key);
   }
 }
