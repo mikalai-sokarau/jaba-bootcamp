@@ -1,16 +1,16 @@
 ### Description
-Cache service implementations using 2 strategies:\
-`LFU` written using plain Java\
-`LRU` written using Guava library
+Cache service implementation using 2 strategies:\
+`LFU` using plain Java\
+`LRU` using Guava library
 
-### Used tools
+### Tools
 * Java 17
 * Maven 3.9.5
 * Google Guava 32.1.3-jre
 * JUnit 4.11
 * JaCoCo 0.8.11
 
-### Instruction
+### Instructions
 From the `cache-service` directory:
 1. `> mvn clean package` to package a project
 2. `> java -jar java-lfu/target/java-lfu-0.0.1.jar`* to run Java LFU service
@@ -22,8 +22,8 @@ Service accepts the following commands in the terminal:\
 `put` \<number\> or <key, value> (put \<number\> entries into cache or put <key, value> into cache)\
 `get` \<key\> (get value for \<key\>)\
 `stats` (print cache statistics)\
-`help` (show available commands)
-`exit` (exit the application)\
+`help` (show available commands)\
+`exit` (exit the application)
 
 
 ### Screenshots
@@ -38,7 +38,7 @@ Service accepts the following commands in the terminal:\
 after 5 seconds items are automatically evicted:\
 <img width="400" alt="Screenshot 2023-12-03 at 17 02 43" src="https://github.com/mikalai-sokarau/java-sandbox/assets/33463819/9017b975-c15a-474f-8617-461d7a17b2bf">
 
-if one of the items was requested, it's eviction period starts from the beginning:\
+if one of the items was requested, its eviction period starts from the beginning:\
 <img width="400" alt="Screenshot 2023-12-03 at 17 23 40" src="https://github.com/mikalai-sokarau/java-sandbox/assets/33463819/8af13f0f-4ad8-4d47-96b3-9d54b417f106">
 
 `> java -jar java-lfu/target/java-lfu-0.0.1.jar 5 60000 10000` to check LFU eviction strategy:
@@ -66,7 +66,7 @@ if one of the items was requested, it's eviction period starts from the beginnin
 <img width="400" alt="Screenshot 2023-12-03 at 20 11 20" src="https://github.com/mikalai-sokarau/java-sandbox/assets/33463819/bd3a2971-0528-4ccd-b723-904d91da84ea">
 
 ### Test coverage
-`> mvn clean test` command will run tests and collect coverage.\
+`> mvn clean test` command runs tests and collects coverage.\
 Test coverage can be found at `(java-lfu|guava-lru)/target/coverage/index.html`.
 
 Java LFU:\
