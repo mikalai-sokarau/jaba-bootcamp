@@ -86,6 +86,7 @@ public class ScannerServiceImpl implements ScannerService {
         %1$sput%3$s %2$s<number> or <key, value>%3$s (put <number> entries into cache or put <key, value> into cache)
         %1$sget%3$s %2$s<key>%3$s (get value for <key>)
         %1$sstats%3$s (print cache statistics)
+        %1$shelp%3$s (show available commands)
         %1$sexit%3$s (exit the application)
         """.formatted(ANSI_BLUE, ANSI_YELLOW, ANSI_RESET));
   }
