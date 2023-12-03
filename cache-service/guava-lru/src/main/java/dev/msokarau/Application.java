@@ -8,7 +8,7 @@ import dev.msokarau.interfaces.ScannerService.ScannerService;
 
 public class Application {
     public static void main(String[] args) {
-        CacheService cacheService = new CacheServiceImpl(new ConfigImpl(10, 15000));
+        CacheService cacheService = new CacheServiceImpl(new ConfigImpl(args));
         ScannerService scannerService = new ScannerServiceImpl(cacheService);
 
         scannerService.run();

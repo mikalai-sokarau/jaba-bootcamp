@@ -28,6 +28,20 @@ public class ConfigImpl implements Config {
     this.evictionPeriod = evictionPeriod;
   }
 
+  public ConfigImpl(String[] args) {
+    this();
+
+    if (args.length > 0) {
+      this.maxItems = Integer.parseInt(args[0]);
+    }
+    if (args.length > 1) {
+      this.evictionTime = Integer.parseInt(args[1]);
+    }
+    if (args.length > 2) {
+      this.evictionPeriod = Integer.parseInt(args[2]);
+    }
+  }
+
   public int getMaxItems() {
     return maxItems;
   }
