@@ -1,6 +1,8 @@
 package dev.sokarau;
 
 import dev.sokarau.DiskAnalyzer.DiskAnalyzer;
+import dev.sokarau.DiskAnalyzer.TimeTracker;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,16 +45,16 @@ public class App {
 
         switch (functionNumber) {
             case 1:
-                DiskAnalyzer.getMaxFileByLetter(startPath, args[2].charAt(0));
+                TimeTracker.track(() -> DiskAnalyzer.getMaxFileByLetter(startPath, args[2].charAt(0)));
                 break;
             case 2:
-                DiskAnalyzer.getTop5LargestFiles(startPath);
+                TimeTracker.track(() -> DiskAnalyzer.getTop5LargestFiles(startPath));
                 break;
             case 3:
-                DiskAnalyzer.getAverageFileSize(startPath);
+                TimeTracker.track(() -> DiskAnalyzer.getAverageFileSize(startPath));
                 break;
             case 4:
-                DiskAnalyzer.getCountFirstLetter(startPath);
+                TimeTracker.track(() -> DiskAnalyzer.getCountFirstLetter(startPath));
                 break;
             default:
                 System.out.println("Invalid Function number");
