@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class DiskAnalyzer {
     public static final int FUNCTION_NUMBERS = 4;
-    private static final String OUTPUT_FILENAME = "disk-analyzer/target/diskAnalyzerOutput.txt";
+    private static final String OUTPUT_FILENAME = "disk-analyzer/target/disk-analyzer-output.txt";
 
     /**
      * Searches for the file name with the maximum number of letters in the
