@@ -6,7 +6,7 @@ DiskAnalyzer command line utility allows to analyze disk space usage and find fi
 * Calculate the average file size in the specified directory and its subdirectories.
 * Calculate the number of files and folders, divided by the first letters of the alphabet.
 
-Output is printed to the console and stored to the disk-analyzer/target/diskAnalyzerOutput.txt file.
+Output is printed to the console and stored to the disk-analyzer/target/disk-analyzer-output.txt file.
 
 ### Tools
 * Java 8+
