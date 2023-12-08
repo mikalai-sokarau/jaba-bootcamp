@@ -10,12 +10,12 @@ import java.io.ObjectOutputStream;
  * fileName is a name of the file where the object is serialized.
  */
 public class Serializer {
-  public final static String fileName = "serialization/target/serialized.txt";
+  public final static String fileName = "serializer/target/serialized.txt";
 
   public static void serialize(Object[] objects) {
     try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
       for (Object o : objects) {
-        System.out.println("Before serialization: \n" + o);
+        System.out.println("\nBefore serialization: \n" + o);
         out.writeObject(objects);
       }
 
@@ -29,7 +29,7 @@ public class Serializer {
       Object[] objects = (Object[]) in.readObject();
 
       for (Object o : objects) {
-        System.out.println("After deserialization: \n" + o);
+        System.out.println("\nAfter deserialization: \n" + o);
       }
 
       return objects;
