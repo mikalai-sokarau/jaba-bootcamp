@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
  * fileName is a name of the file where the object is serialized.
  */
 public class Serializer {
-  public final static String fileName = "serialized.txt";
+  public final static String fileName = "serialization/target/serialized.txt";
 
   public static void serialize(Object[] objects) {
     try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
