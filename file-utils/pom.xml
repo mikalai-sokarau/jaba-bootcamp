@@ -78,8 +78,9 @@
   </build>
 
   <modules>
-    <module>serializer</module>
     <module>disk-analyzer</module>
+    <module>fast-file-mover</module>
+    <module>serializer</module>
   </modules>
 
 </project>
