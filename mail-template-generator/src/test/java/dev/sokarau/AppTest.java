@@ -1,20 +1,19 @@
 package dev.sokarau;
 
-import static org.junit.Assert.assertTrue;
-
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+public class AppTest {
+
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
+
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void shouldThrowErrorIfLaunchedWithoutModeParameter() {
+        exceptionRule.expect(IllegalArgumentException.class);
+        exceptionRule.expectMessage("Mode parameter is missing");
+
+        App.main(new String[0]);
     }
 }
