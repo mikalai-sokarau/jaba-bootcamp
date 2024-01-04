@@ -3,6 +3,8 @@ package dev.sokarau.MailTemplateGeneratorTest;
 import java.util.Scanner;
 import dev.sokarau.MailTemplateGenerator.MailTemplateGenerator;
 import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -18,5 +20,14 @@ public class MailTemplateGeneratorTest {
     new MailTemplateGenerator("console");
 
     assertEquals(userInput, scannerMock.nextLine());
+  }
+
+  @Test
+  public void shouldAcceptInputAndOutputFileNamesWhenStartedInFileMode() {
+    String[] args = { "file", "template.txt", "output.txt" };
+
+    assertDoesNotThrow(() -> {
+      new MailTemplateGenerator(args);
+    });
   }
 }
