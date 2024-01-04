@@ -14,5 +14,9 @@ public class App
         } else {
             throw new IllegalArgumentException("Mode parameter is missing");
         }
+
+        if (!mode.equals("console") && !mode.equals("file")) {
+            throw new IllegalArgumentException("Invalid mode parameter");
+        }
     }
 }
