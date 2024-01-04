@@ -10,4 +10,11 @@ public class MailTemplateGenerator {
       scanner = new Scanner(System.in);
     }
   }
+
+  public MailTemplateGenerator(String[] args) {
+    if (args.length == 3 && args[0].equals("file")) {
+      String templateFileName = args[1];
+      String outputFileName = args[2];
+    }
+  }
 }
