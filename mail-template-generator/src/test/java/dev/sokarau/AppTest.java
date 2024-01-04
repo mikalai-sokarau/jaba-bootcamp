@@ -43,4 +43,12 @@ public class AppTest {
             App.main(new String[] { mode });
         });
     }
+
+    @Test
+    public void shouldThrowErrorWhenLaunchedWithInvalidMode() {
+        exceptionRule.expect(IllegalArgumentException.class);
+        exceptionRule.expectMessage("Invalid mode parameter");
+
+        App.main(new String[] { "invalid" });
+    }
 }
