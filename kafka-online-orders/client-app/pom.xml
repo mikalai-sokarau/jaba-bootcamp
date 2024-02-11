@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.sokarau</groupId>
-	<artifactId>kafka-online-orders</artifactId>
+	<artifactId>client-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kafka-online-orders</name>
-	<description>Project for creating online orders</description>
+	<name>client-app</name>
+	<description>Client app for creating online orders</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -25,7 +25,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.kafka</groupId>-->
+<!--			<artifactId>spring-kafka</artifactId>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
