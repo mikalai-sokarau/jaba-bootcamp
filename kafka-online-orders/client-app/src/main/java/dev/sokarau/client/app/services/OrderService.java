@@ -1,5 +1,7 @@
-package dev.sokarau.kafkaonlineorders;
+package dev.sokarau.client.app.services;
 
+import dev.sokarau.client.app.dto.Order;
+import dev.sokarau.client.app.dto.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

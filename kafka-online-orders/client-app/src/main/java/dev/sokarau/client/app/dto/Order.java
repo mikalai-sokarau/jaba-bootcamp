@@ -1,4 +1,4 @@
-package dev.sokarau.kafkaonlineorders;
+package dev.sokarau.client.app.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

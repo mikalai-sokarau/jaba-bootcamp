@@ -1,7 +1,7 @@
-package dev.sokarau.kafkaonlineorders.controllers;
+package dev.sokarau.client.app.controllers;
 
-import dev.sokarau.kafkaonlineorders.Order;
-import dev.sokarau.kafkaonlineorders.OrderService;
+import dev.sokarau.client.app.dto.Order;
+import dev.sokarau.client.app.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

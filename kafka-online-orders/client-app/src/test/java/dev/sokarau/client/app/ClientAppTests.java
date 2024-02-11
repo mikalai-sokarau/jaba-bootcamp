@@ -1,10 +1,10 @@
-package dev.sokarau.kafkaonlineorders;
+package dev.sokarau.client.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KafkaOnlineOrdersApplicationTests {
+class ClientAppTests {
 
 	@Test
 	void contextLoads() {
