@@ -1,6 +1,6 @@
 package dev.sokarau.client.app.dto;
 
-import dev.sokarau.client.app.dto.Order;
+import dev.sokarau.client.app.model.Order;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

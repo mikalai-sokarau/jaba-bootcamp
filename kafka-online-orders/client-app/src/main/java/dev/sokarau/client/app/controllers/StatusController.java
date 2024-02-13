@@ -1,6 +1,6 @@
 package dev.sokarau.client.app.controllers;
 
-import dev.sokarau.client.app.dto.Order;
+import dev.sokarau.client.app.model.Order;
 import dev.sokarau.client.app.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
