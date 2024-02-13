@@ -29,7 +29,7 @@ public class OrderService {
     }
 
     public Optional<Order> singleOrder(String orderId) {
-        return orderRepository.findOrderByOrderId(orderId);
+        return orderRepository.findOrderByCorrelationId(orderId);
     }
 
     public String createOrder(String name) {
@@ -44,18 +44,20 @@ public class OrderService {
         kafkaTemplate.send(ORDERS_TOPIC_NAME, gson.toJson(orderDTO));
         System.out.println("Client sent a message: " + orderDTO);
 
-        return order.getOrderId();
+        return order.getCorrelationId();
     }
 
-    public Order updateOrderStatus(String orderId, String status) {
-        Optional<Order> optionalOrder = orderRepository.findOrderByOrderId(orderId);
+    public Order updateOrderStatus(String correlationId, String status) {
+        Optional<Order> optionalOrder = orderRepository.findOrderByCorrelationId(correlationId);
 
         if(optionalOrder.isEmpty()) {
             return null;
         }
 
         Order order = optionalOrder.get();
+
         order.setStatus(status);
+        order.updateTimestamp();
 
         orderRepository.save(order);
 
