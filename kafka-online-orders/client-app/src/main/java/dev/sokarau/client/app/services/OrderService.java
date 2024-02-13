@@ -1,8 +1,11 @@
 package dev.sokarau.client.app.services;
 
-import dev.sokarau.client.app.dto.Order;
+import com.google.gson.Gson;
+import dev.sokarau.client.app.dto.OrderDTO;
 import dev.sokarau.client.app.dto.OrderRepository;
+import dev.sokarau.client.app.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +13,16 @@ import java.util.Optional;
 
 @Service
 public class OrderService {
+    private static final String ORDERS_TOPIC_NAME = "orders";
+
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Autowired
+    private Gson gson;
 
     public List<Order> allOrders() {
         return orderRepository.findAll();
@@ -23,8 +34,15 @@ public class OrderService {
 
     public String createOrder(String name) {
         Order order = new Order(name);
+        OrderDTO orderDTO = OrderDTO.builder()
+                .correlationId(order.getCorrelationId())
+                .name(order.getName())
+                .status(order.getStatus())
+                .build();
 
         orderRepository.save(order);
+        kafkaTemplate.send(ORDERS_TOPIC_NAME, gson.toJson(orderDTO));
+        System.out.println("Client sent a message: " + orderDTO);
 
         return order.getOrderId();
     }
