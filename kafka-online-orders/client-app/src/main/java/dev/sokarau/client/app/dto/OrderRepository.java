@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends MongoRepository<Order, ObjectId> {
-    Optional<Order> findOrderByCorrelationId(String orderId);
+    Optional<Order> findOrderByCorrelationId(String correlationId);
 }

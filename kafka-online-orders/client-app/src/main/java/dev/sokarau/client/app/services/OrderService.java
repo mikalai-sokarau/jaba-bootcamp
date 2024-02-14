@@ -28,8 +28,8 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Optional<Order> singleOrder(String orderId) {
-        return orderRepository.findOrderByCorrelationId(orderId);
+    public Optional<Order> singleOrder(String correlationId) {
+        return orderRepository.findOrderByCorrelationId(correlationId);
     }
 
     public String createOrder(String name) {
