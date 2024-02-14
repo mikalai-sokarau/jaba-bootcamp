@@ -24,6 +24,11 @@ public class OrderService {
     @Autowired
     private Gson gson;
 
+    public OrderService(OrderRepository orderRepository) {
+        // clean up a database from previous orders when the service starts
+        orderRepository.deleteAll();
+    }
+
     public List<Order> allOrders() {
         return orderRepository.findAll();
     }
