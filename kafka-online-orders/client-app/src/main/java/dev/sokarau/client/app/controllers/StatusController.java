@@ -11,15 +11,15 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/statuses")
+@RequestMapping("pizzeria/api/v1/statuses")
 public class StatusController {
     @Autowired
     private OrderService orderService;
 
-    // Get status by orderId
-    @GetMapping("/{orderId}")
-    public ResponseEntity<Optional<String>> getStatusByOrderId(@PathVariable String orderId) {
-        Optional<Order> optionalOrder = orderService.singleOrder(orderId);
+    // Get status by correlationId
+    @GetMapping("/{correlationId}")
+    public ResponseEntity<Optional<String>> getStatusByCorrelationId(@PathVariable String correlationId) {
+        Optional<Order> optionalOrder = orderService.singleOrder(correlationId);
 
         if(optionalOrder.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -30,10 +30,11 @@ public class StatusController {
         return new ResponseEntity<>(Optional.ofNullable(status), HttpStatus.OK);
     }
 
-    // Update status by orderId (for testing purposes)
-    @PutMapping("/{orderId}")
-    public ResponseEntity<Order> updateStatusByOrderId(@PathVariable String orderId, @RequestBody Map<String, String> payload) {
-        Order order = orderService.updateOrderStatus(orderId, payload.get("status"));
+    // Update status by correlationId (for testing purposes)
+    @PutMapping("/{correlationId}")
+    public ResponseEntity<Order> updateStatusByCorrelationId(@PathVariable String correlationId,
+            @RequestBody Map<String, String> payload) {
+        Order order = orderService.updateOrderStatus(correlationId, payload.get("status"));
 
         if(order == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

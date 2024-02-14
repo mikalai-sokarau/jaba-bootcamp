@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/orders")
+@RequestMapping("pizzeria/api/v1/orders")
 public class OrderController {
     @Autowired
     private OrderService orderService;
@@ -29,9 +29,9 @@ public class OrderController {
         return new ResponseEntity<>(orderService.allOrders(), HttpStatus.OK);
     }
 
-    // Get order by orderId (for testing purposes)
-    @GetMapping("/{orderId}")
-    public ResponseEntity<Optional<Order>> getOrderByOrderId(@PathVariable String orderId) {
-        return new ResponseEntity<>(orderService.singleOrder(orderId), HttpStatus.OK);
+    // Get order by correlationId (for testing purposes)
+    @GetMapping("/{correlationId}")
+    public ResponseEntity<Optional<Order>> getOrderByCorrelationId(@PathVariable String correlationId) {
+        return new ResponseEntity<>(orderService.singleOrder(correlationId), HttpStatus.OK);
     }
 }
