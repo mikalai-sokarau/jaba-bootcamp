@@ -1,9 +1,9 @@
 package dev.sokarau.client.app.services;
 
 import com.google.gson.Gson;
-import dev.sokarau.client.app.dto.OrderDTO;
 import dev.sokarau.client.app.dto.OrderRepository;
 import dev.sokarau.client.app.model.Order;
+import dev.sokarau.common.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
