@@ -1,7 +1,7 @@
 package dev.sokarau.client.app.services;
 
 import com.google.gson.Gson;
-import dev.sokarau.client.app.dto.OrderRepository;
+import dev.sokarau.client.app.repository.OrderRepository;
 import dev.sokarau.client.app.model.Order;
 import dev.sokarau.common.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;

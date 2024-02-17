@@ -1,4 +1,4 @@
-package dev.sokarau.client.app.dto;
+package dev.sokarau.client.app.repository;
 
 import dev.sokarau.client.app.model.Order;
 import org.bson.types.ObjectId;
