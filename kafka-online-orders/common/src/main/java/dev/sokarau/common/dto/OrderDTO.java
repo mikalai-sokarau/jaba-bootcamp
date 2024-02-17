@@ -1,4 +1,4 @@
-package dev.sokarau.client.app.dto;
+package dev.sokarau.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
