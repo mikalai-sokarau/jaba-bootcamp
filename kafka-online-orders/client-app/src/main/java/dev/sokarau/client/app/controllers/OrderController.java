@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("pizzeria/api/v1/orders")
+@RequestMapping("api/v1/orders")
 public class OrderController {
     @Autowired
     private OrderService orderService;

@@ -24,9 +24,9 @@ public class KafkaListeners {
     void listener(String message) {
         OrderDTO orderDTO = gson.fromJson(message, OrderDTO.class);
 
-        sendMessageWithDelay(orderDTO, "COOKING", 0, 0);
-        sendMessageWithDelay(orderDTO, "READY_TO_PICK_UP", 0, 3000);
-        sendMessageWithDelay(orderDTO, "READY_TO_PICK_UP", 1, 3000);
+        sendMessageWithDelay(orderDTO, "COOKING", 0, 3000);
+        sendMessageWithDelay(orderDTO, "READY_TO_PICK_UP", 0, 6000);
+        sendMessageWithDelay(orderDTO, "READY_TO_PICK_UP", 1, 6000);
     }
 
     private void sendMessageWithDelay(OrderDTO orderDTO, String status, int partition, int delay){
