@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import dev.sokarau.client.app.repository.OrderRepository;
 import dev.sokarau.client.app.model.Order;
 import dev.sokarau.common.OrderDTO;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import java.util.Optional;
 @Service
 public class OrderService {
     private static final String ORDERS_TOPIC_NAME = "orders";
+    private static final Logger logger = LogManager.getLogger(OrderService.class);
 
     @Autowired
     private OrderRepository orderRepository;
@@ -47,7 +51,8 @@ public class OrderService {
 
         orderRepository.save(order);
         kafkaTemplate.send(ORDERS_TOPIC_NAME, gson.toJson(orderDTO));
-        System.out.println("Client sent a message: " + orderDTO);
+
+        logger.info("Client sent a message: " + orderDTO);
 
         return order.getCorrelationId();
     }
