@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Service
 public class OrderService {
@@ -50,9 +52,8 @@ public class OrderService {
                 .build();
 
         orderRepository.save(order);
-        kafkaTemplate.send(ORDERS_TOPIC_NAME, gson.toJson(orderDTO));
 
-        logger.info("Client sent a message: " + orderDTO);
+        sendMessageWithDelay(orderDTO, "CREATED", 3000);
 
         return order.getCorrelationId();
     }
@@ -72,5 +73,16 @@ public class OrderService {
         orderRepository.save(order);
 
         return order;
+    }
+
+    private void sendMessageWithDelay(OrderDTO orderDTO, String status, int delay){
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                orderDTO.setStatus(status);
+                kafkaTemplate.send(ORDERS_TOPIC_NAME, 0, "", gson.toJson(orderDTO));
+                logger.info("Client sent a message: " + orderDTO);
+            }
+        }, delay);
     }
 }

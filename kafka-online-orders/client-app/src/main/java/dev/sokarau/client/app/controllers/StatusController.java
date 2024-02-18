@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("pizzeria/api/v1/statuses")
+@RequestMapping("api/v1/statuses")
 public class StatusController {
     @Autowired
     private OrderService orderService;
